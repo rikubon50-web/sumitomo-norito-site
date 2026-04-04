@@ -10,10 +10,10 @@ type Props = {
  */
 export default function PageHeader({ title, subtitle, description }: Props) {
   return (
-    <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 border-b border-white/5">
+    <section className="pt-16 pb-16 lg:pt-20 lg:pb-24 border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {subtitle && (
-          <p className="text-xs uppercase tracking-[0.3em] text-primary-500 mb-3">
+          <p className="text-xs uppercase tracking-[0.3em] text-primary-500 mb-3 pt-2">
             {subtitle}
           </p>
         )}

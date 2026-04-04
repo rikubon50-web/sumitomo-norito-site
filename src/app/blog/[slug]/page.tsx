@@ -44,7 +44,7 @@ export default async function BlogDetailPage({ params }: Props) {
   const dateStr = post.publishedAt || post.createdAt;
 
   return (
-    <article className="pt-32 lg:pt-40 pb-section-sm lg:pb-section">
+    <article className="pt-12 lg:pt-16 pb-section-sm lg:pb-section">
       <div className="max-w-3xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <header>

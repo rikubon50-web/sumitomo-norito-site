@@ -63,7 +63,7 @@ export default async function WorkDetailPage({ params }: Props) {
 
       <article className="max-w-4xl mx-auto px-6 lg:px-12 py-section-sm lg:py-section">
         {/* Header */}
-        <header className={work.coverImage ? "" : "pt-32 lg:pt-40"}>
+        <header className={work.coverImage ? "" : "pt-12 lg:pt-16"}>
           <div className="flex items-center gap-4 mb-4">
             {work.year && (
               <span className="text-sm text-primary-500">{work.year}</span>
