@@ -16,7 +16,7 @@ export default function Hero({
   englishName,
 }: Props) {
   return (
-    <section className="relative mt-16 lg:mt-20 h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] min-h-[520px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] min-h-[520px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       {imageUrl ? (
         <Image
