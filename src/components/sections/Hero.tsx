@@ -31,7 +31,7 @@ export default function Hero({
           src={imageUrl}
           alt=""
           fill
-          className="object-cover object-center"
+          className="object-contain object-center"
           priority
           sizes="100vw"
         />
