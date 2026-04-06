@@ -92,7 +92,7 @@ export default function Header() {
               <div className="w-6 flex flex-col gap-1.5">
                 <span
                   className={`block h-px bg-white transition-all duration-300 ${
-                    isOpen ? "rotate-45 translate-y-[3.5px]" : ""
+                    isOpen ? "rotate-45 translate-y-[7px]" : ""
                   }`}
                 />
                 <span
@@ -102,7 +102,7 @@ export default function Header() {
                 />
                 <span
                   className={`block h-px bg-white transition-all duration-300 ${
-                    isOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
+                    isOpen ? "-rotate-45 -translate-y-[7px]" : ""
                   }`}
                 />
               </div>
