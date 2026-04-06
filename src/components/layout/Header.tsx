@@ -12,6 +12,28 @@ const NAV_ITEMS = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
+const INSTAGRAM_URL =
+  "https://www.instagram.com/norihito_sumitomo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==";
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,43 +49,65 @@ export default function Header() {
             Norihito Sumitomo
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm text-primary-300 hover:text-white tracking-wide transition-colors duration-300"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          {/* Desktop Nav + Instagram */}
+          <div className="hidden lg:flex items-center gap-8">
+            <nav className="flex items-center gap-8">
+              {NAV_ITEMS.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-primary-300 hover:text-white tracking-wide transition-colors duration-300"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-primary-400 hover:text-white transition-colors duration-300"
+            >
+              <InstagramIcon className="w-5 h-5" />
+            </a>
+          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-white p-2"
-            aria-label="メニュー"
-          >
-            <div className="w-6 flex flex-col gap-1.5">
-              <span
-                className={`block h-px bg-white transition-all duration-300 ${
-                  isOpen ? "rotate-45 translate-y-[3.5px]" : ""
-                }`}
-              />
-              <span
-                className={`block h-px bg-white transition-all duration-300 ${
-                  isOpen ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`block h-px bg-white transition-all duration-300 ${
-                  isOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
-                }`}
-              />
-            </div>
-          </button>
+          {/* Mobile: Instagram + Hamburger */}
+          <div className="lg:hidden flex items-center gap-4">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-primary-400 hover:text-white transition-colors"
+            >
+              <InstagramIcon className="w-5 h-5" />
+            </a>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-white p-1"
+              aria-label="メニュー"
+            >
+              <div className="w-6 flex flex-col gap-1.5">
+                <span
+                  className={`block h-px bg-white transition-all duration-300 ${
+                    isOpen ? "rotate-45 translate-y-[3.5px]" : ""
+                  }`}
+                />
+                <span
+                  className={`block h-px bg-white transition-all duration-300 ${
+                    isOpen ? "opacity-0" : ""
+                  }`}
+                />
+                <span
+                  className={`block h-px bg-white transition-all duration-300 ${
+                    isOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
 
