@@ -42,10 +42,10 @@ export default async function ProfilePage() {
         {/* Main Visual + Short Bio */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Photo */}
-          {profile.mainVisual && (
+          {profile.profileImage && (
             <div className="relative aspect-[3/4] overflow-hidden bg-primary-900">
               <Image
-                src={profile.mainVisual.url}
+                src={profile.profileImage.url}
                 alt={profile.name}
                 fill
                 className="object-cover"
@@ -63,12 +63,6 @@ export default async function ProfilePage() {
             <h2 className="font-display text-display-sm text-white mb-8">
               {profile.name}
             </h2>
-
-            {profile.shortBio && (
-              <p className="text-primary-300 leading-relaxed text-lg font-light mb-8">
-                {profile.shortBio}
-              </p>
-            )}
 
             {profile.longBio && (
               <div className="text-primary-400 leading-relaxed whitespace-pre-wrap">

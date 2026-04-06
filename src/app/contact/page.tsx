@@ -32,16 +32,12 @@ export default async function ContactPage() {
             <h2 className="text-xs uppercase tracking-[0.2em] text-primary-500 mb-4">
               Email
             </h2>
-            {settings?.contactEmail ? (
-              <a
-                href={`mailto:${settings.contactEmail}`}
-                className="text-xl lg:text-2xl text-white hover:text-primary-300 transition-colors font-light tracking-wide"
-              >
-                {settings.contactEmail}
-              </a>
-            ) : (
-              <p className="text-primary-500">メールアドレスは準備中です。</p>
-            )}
+            <a
+              href={`mailto:${settings?.contactEmail || "noripiton@gmail.com"}`}
+              className="text-xl lg:text-2xl text-white hover:text-primary-300 transition-colors font-light tracking-wide"
+            >
+              {settings?.contactEmail || "noripiton@gmail.com"}
+            </a>
             <p className="mt-4 text-sm text-primary-500 leading-relaxed">
               メールにてお気軽にお問い合わせください。
               <br />
