@@ -2,12 +2,10 @@ import Link from "next/link";
 
 type Props = {
   heading?: string;
-  description?: string;
 };
 
 export default function ContactCTA({
   heading = "Get in Touch",
-  description = "お仕事のご相談・ご依頼はお気軽にお問い合わせください。",
 }: Props) {
   return (
     <section className="py-section-sm lg:py-section">
@@ -15,7 +13,6 @@ export default function ContactCTA({
         <h2 className="font-display text-display-sm lg:text-display-md text-white tracking-wide">
           {heading}
         </h2>
-        <p className="mt-4 text-primary-400 leading-relaxed">{description}</p>
         <Link
           href="/contact"
           className="

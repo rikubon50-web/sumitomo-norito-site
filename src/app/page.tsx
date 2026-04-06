@@ -47,9 +47,8 @@ export default async function HomePage() {
           Hero Section
           ======================================== */}
       <Hero
-        imageUrl={profileData?.mainVisual?.url}
+        imageUrl={profileData?.profileImage?.url}
         catchCopy={siteSettings?.heroCatch || ""}
-        subCatch={siteSettings?.heroSubCatch}
         name={profileData?.name}
         englishName={profileData?.englishName}
       />

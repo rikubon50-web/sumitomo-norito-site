@@ -23,7 +23,6 @@ export default async function ContactPage() {
       <PageHeader
         title="Contact"
         subtitle="Get in Touch"
-        description="お仕事のご相談・ご依頼はお気軽にお問い合わせください。"
       />
 
       <div className="max-w-3xl mx-auto px-6 lg:px-12 py-section-sm lg:py-section">

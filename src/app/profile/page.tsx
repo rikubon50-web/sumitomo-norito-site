@@ -36,17 +36,16 @@ export default async function ProfilePage() {
       <PageHeader
         title="Profile"
         subtitle="About"
-        description={profile.shortBio}
       />
 
       <div className="max-w-6xl mx-auto px-6 lg:px-12 py-section-sm lg:py-section">
         {/* Main Visual + Short Bio */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Photo */}
-          {profile.profileImage && (
+          {profile.mainVisual && (
             <div className="relative aspect-[3/4] overflow-hidden bg-primary-900">
               <Image
-                src={profile.profileImage.url}
+                src={profile.mainVisual.url}
                 alt={profile.name}
                 fill
                 className="object-cover"

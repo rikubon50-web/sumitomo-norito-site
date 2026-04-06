@@ -3,7 +3,6 @@ import Image from "next/image";
 type Props = {
   imageUrl?: string;
   catchCopy: string;
-  subCatch?: string;
   name?: string;
   englishName?: string;
 };
@@ -11,21 +10,15 @@ type Props = {
 export default function Hero({
   imageUrl,
   catchCopy,
-  subCatch,
   name,
   englishName,
 }: Props) {
   return (
-    /**
-     * sticky ヘッダーの分を引いた高さにする。
-     * overflow-hidden で画像がこのコンテナの外に絶対出ない構造。
-     * ヘッダーは sticky なので、このセクションは必ずヘッダーの下から始まる。
-     */
     <section
       className="relative w-full overflow-hidden"
       style={{ height: "calc(100svh - 64px)" }}
     >
-      {/* 背景画像レイヤー（inset-0 で section 内に完全閉じ込め） */}
+      {/* 背景画像 */}
       {imageUrl ? (
         <Image
           src={imageUrl}
@@ -58,18 +51,12 @@ export default function Hero({
               {name}
             </h1>
           )}
-          <p
-            className="text-lg lg:text-xl text-primary-200 leading-relaxed font-light animate-fade-in-up"
-            style={{ animationDelay: "0.4s" }}
-          >
-            {catchCopy}
-          </p>
-          {subCatch && (
+          {catchCopy && (
             <p
-              className="mt-3 text-sm text-primary-400 animate-fade-in-up"
-              style={{ animationDelay: "0.6s" }}
+              className="text-lg lg:text-xl text-primary-200 leading-relaxed font-light animate-fade-in-up"
+              style={{ animationDelay: "0.4s" }}
             >
-              {subCatch}
+              {catchCopy}
             </p>
           )}
         </div>
