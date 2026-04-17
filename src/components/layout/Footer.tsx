@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { SiteSettings } from "@/types/microcms";
-import { getSnsIcon } from "@/lib/utils";
 
 type Props = {
   settings?: SiteSettings | null;
@@ -20,7 +19,7 @@ export default function Footer({ settings }: Props) {
   return (
     <footer className="border-t border-white/5 bg-primary-950">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Branding */}
           <div>
             <Link
@@ -54,36 +53,6 @@ export default function Footer({ settings }: Props) {
               ))}
             </ul>
           </nav>
-
-          {/* Social & Contact */}
-          <div>
-            <h3 className="text-xs uppercase tracking-[0.2em] text-primary-500 mb-4">
-              Connect
-            </h3>
-            {settings?.contactEmail && (
-              <a
-                href={`mailto:${settings.contactEmail}`}
-                className="block text-sm text-primary-400 hover:text-white transition-colors mb-4"
-              >
-                {settings.contactEmail}
-              </a>
-            )}
-            {settings?.snsLinks && settings.snsLinks.length > 0 && (
-              <div className="flex gap-4">
-                {settings.snsLinks.map((sns, i) => (
-                  <a
-                    key={i}
-                    href={sns.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-primary-500 hover:text-white transition-colors"
-                  >
-                    {getSnsIcon(sns.platform)}
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Bottom */}
