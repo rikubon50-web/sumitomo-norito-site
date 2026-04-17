@@ -89,20 +89,3 @@ export type Post = {
   externalUrl?: string;
 } & MicroCMSListContent;
 
-// ============================================================
-// 5. gallery（リスト型）
-// ============================================================
-
-export type GalleryMediaType = "photo" | "video";
-
-export type GalleryItem = {
-  title: string;
-  slug?: string;
-  thumbnail?: MicroCMSImage;
-  type?: GalleryMediaType[];  // microCMSのセレクトフィールド
-  images?: MicroCMSImage[];
-  videoUrl?: string;
-  caption?: string;
-  shotDate?: string;
-  isFeatured?: boolean;
-} & MicroCMSListContent;

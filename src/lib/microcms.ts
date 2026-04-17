@@ -6,7 +6,6 @@ import type {
   Work,
   Post,
   PostType,
-  GalleryItem,
 } from "@/types/microcms";
 
 // ============================================================
@@ -124,33 +123,4 @@ export async function getPostBySlug(
     },
   });
   return res.contents[0] ?? null;
-}
-
-// ============================================================
-// gallery
-// ============================================================
-
-export async function getGalleryItems(
-  queries?: MicroCMSQueries
-): Promise<MicroCMSListResponse<GalleryItem>> {
-  return client.getList<GalleryItem>({
-    endpoint: "gallery",
-    queries: {
-      orders: "-publishedAt",
-      ...queries,
-    },
-  });
-}
-
-export async function getFeaturedGalleryItems(
-  limit = 8
-): Promise<MicroCMSListResponse<GalleryItem>> {
-  return client.getList<GalleryItem>({
-    endpoint: "gallery",
-    queries: {
-      filters: "isFeatured[equals]true",
-      limit,
-      orders: "-publishedAt",
-    },
-  });
 }
