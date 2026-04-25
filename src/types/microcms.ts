@@ -67,7 +67,6 @@ export type BlogPost = {
   thumbnail?: MicroCMSImage;
   excerpt?: string;
   body?: string;
-  publishedAt?: string;
   isFeatured?: boolean;
 } & MicroCMSListContent;
 
@@ -78,7 +77,6 @@ export type BlogPost = {
 export type NewsPost = {
   title: string;
   body?: string;
-  publishedAt?: string;
   externalUrl?: string;
 } & MicroCMSListContent;
 
