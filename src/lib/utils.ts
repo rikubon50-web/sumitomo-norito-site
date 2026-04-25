@@ -23,29 +23,6 @@ export function formatDateShort(dateString: string): string {
 }
 
 /**
- * microCMS画像URLにクエリパラメータを追加
- */
-export function optimizeImage(
-  url: string,
-  options: { width?: number; height?: number; format?: string } = {}
-): string {
-  const params = new URLSearchParams();
-  if (options.width) params.set("w", String(options.width));
-  if (options.height) params.set("h", String(options.height));
-  if (options.format) params.set("fm", options.format);
-  const query = params.toString();
-  return query ? `${url}?${query}` : url;
-}
-
-/**
- * テキストを指定文字数で切り詰める
- */
-export function truncateText(text: string, maxLength: number): string {
-  if (text.length <= maxLength) return text;
-  return text.slice(0, maxLength) + "…";
-}
-
-/**
  * YouTube URLを埋め込み用URLに変換する
  */
 export function toYouTubeEmbedUrl(url: string): string {

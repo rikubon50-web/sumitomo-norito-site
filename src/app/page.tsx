@@ -8,7 +8,7 @@ import {
   getSiteSettings,
   getProfile,
   getFeaturedWorks,
-  getBlogPosts,
+  getFeaturedBlogPosts,
   getNewsPosts,
 } from "@/lib/microcms";
 import type { BlogPost } from "@/types/microcms";
@@ -22,7 +22,7 @@ export default async function HomePage() {
       getSiteSettings(),
       getProfile(),
       getFeaturedWorks(6),
-      getBlogPosts({ limit: 5 }),
+      getFeaturedBlogPosts(5),
       getNewsPosts({ limit: 5 }),
     ]);
 
@@ -70,7 +70,7 @@ export default async function HomePage() {
       {latestBlog.length > 0 && (
         <section className="py-section-sm lg:py-section border-t border-white/5">
           <div className="max-w-3xl mx-auto px-6 lg:px-12">
-            <SectionTitle title="Blog" subtitle="Latest Articles" />
+            <SectionTitle title="Blog" subtitle="Selected Articles" />
             <BlogList posts={latestBlog} />
             <div className="mt-8 text-center">
               <Link

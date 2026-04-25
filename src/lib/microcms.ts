@@ -100,6 +100,19 @@ export async function getBlogPosts(
   });
 }
 
+export async function getFeaturedBlogPosts(
+  limit = 5
+): Promise<MicroCMSListResponse<BlogPost>> {
+  return client.getList<BlogPost>({
+    endpoint: "blog",
+    queries: {
+      filters: "isFeatured[equals]true",
+      limit,
+      orders: "-publishedAt",
+    },
+  });
+}
+
 export async function getBlogPostById(id: string): Promise<BlogPost | null> {
   try {
     return await client.get<BlogPost>({
