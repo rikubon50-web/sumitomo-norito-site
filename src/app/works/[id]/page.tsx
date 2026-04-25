@@ -44,16 +44,31 @@ export default async function WorkDetailPage({ params }: Props) {
   return (
     <>
       {work.thumbnail && (
-        <div className="relative w-full h-[50vh] lg:h-[60vh] mt-16 lg:mt-20">
-          <Image
-            src={work.thumbnail.url}
-            alt={work.title}
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary-950 via-transparent to-transparent" />
+        <div className="relative w-full h-[50vh] lg:h-[60vh] mt-16 lg:mt-20 overflow-hidden">
+          {/* ぼかし背景 */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={work.thumbnail.url}
+              alt=""
+              fill
+              className="object-cover scale-110 blur-2xl brightness-[0.35]"
+              sizes="100vw"
+              aria-hidden="true"
+            />
+          </div>
+          {/* メイン画像 */}
+          <div className="absolute inset-0 z-10">
+            <Image
+              src={work.thumbnail.url}
+              alt={work.title}
+              fill
+              className="object-contain"
+              priority
+              sizes="100vw"
+            />
+          </div>
+          {/* 下部グラデーション */}
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary-950 to-transparent z-20" />
         </div>
       )}
 
