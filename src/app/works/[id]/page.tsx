@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getWorkById, getWorks } from "@/lib/microcms";
+import { toYouTubeEmbedUrl } from "@/lib/utils";
 import RichTextRenderer from "@/components/ui/RichTextRenderer";
 import ContactCTA from "@/components/ui/ContactCTA";
 
@@ -88,7 +89,7 @@ export default async function WorkDetailPage({ params }: Props) {
             <h2 className="font-display text-xl text-white mb-6">Video</h2>
             <div className="aspect-video bg-primary-900 overflow-hidden rounded-lg">
               <iframe
-                src={work.videoUrl}
+                src={toYouTubeEmbedUrl(work.videoUrl)}
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

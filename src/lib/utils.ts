@@ -46,6 +46,19 @@ export function truncateText(text: string, maxLength: number): string {
 }
 
 /**
+ * YouTube URLを埋め込み用URLに変換する
+ */
+export function toYouTubeEmbedUrl(url: string): string {
+  const watchMatch = url.match(/youtube\.com\/watch\?.*v=([^&]+)/);
+  if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
+
+  const shortMatch = url.match(/youtu\.be\/([^?]+)/);
+  if (shortMatch) return `https://www.youtube.com/embed/${shortMatch[1]}`;
+
+  return url;
+}
+
+/**
  * SNSプラットフォーム名からアイコンラベルを返す
  */
 export function getSnsIcon(platform: string): string {

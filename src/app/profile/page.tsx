@@ -43,16 +43,15 @@ export default async function ProfilePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Photo */}
           {profile.profileImage && (
-            <div className="relative aspect-[3/4] overflow-hidden bg-primary-900">
-              <Image
-                src={profile.profileImage.url}
-                alt={profile.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
-            </div>
+            <Image
+              src={profile.profileImage.url}
+              alt={profile.name}
+              width={profile.profileImage.width ?? 800}
+              height={profile.profileImage.height ?? 1000}
+              className="w-full h-auto"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
           )}
 
           {/* Bio */}
