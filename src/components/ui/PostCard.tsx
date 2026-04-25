@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function PostCard({ post, basePath }: Props) {
-  const href = `/${basePath}/${post.slug}`;
+  const href = `/${basePath}/${post.id}`;
   const dateStr = post.publishedAt || post.createdAt;
 
   return (

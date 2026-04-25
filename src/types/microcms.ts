@@ -11,12 +11,6 @@ export type SnsLink = {
   label?: string;
 };
 
-/** 関連リンク（繰り返しフィールド想定） */
-export type RelatedLink = {
-  label: string;
-  url: string;
-};
-
 // ============================================================
 // 1. siteSettings（単一コンテンツ）
 // ============================================================
@@ -54,16 +48,11 @@ export type Profile = {
 
 export type Work = {
   title: string;
-  slug: string;
   thumbnail?: MicroCMSImage;
-  coverImage?: MicroCMSImage;
   excerpt?: string;
   body?: string;            // リッチテキスト
   year?: string;
   role?: string;
-  category?: string[];
-  tags?: string[];
-  relatedLinks?: RelatedLink[];
   galleryImages?: MicroCMSImage[];
   videoUrl?: string;
   isFeatured?: boolean;
@@ -77,13 +66,10 @@ export type PostType = "blog" | "news";
 
 export type Post = {
   title: string;
-  slug: string;
   thumbnail?: MicroCMSImage;
   excerpt?: string;
   body?: string;           // リッチテキスト
   postType: PostType[];    // microCMSのセレクトフィールド（配列）
-  category?: string[];
-  tags?: string[];
   publishedAt?: string;
   isFeatured?: boolean;
   externalUrl?: string;

@@ -24,7 +24,7 @@ export default function NewsList({ posts, showMore = false }: Props) {
           return (
             <li key={post.id}>
               <Link
-                href={`/news/${post.slug}`}
+                href={`/news/${post.id}`}
                 className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-5 group"
               >
                 <time className="text-xs text-primary-500 shrink-0 w-28">

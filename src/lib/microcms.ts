@@ -60,15 +60,15 @@ export async function getWorks(
   });
 }
 
-export async function getWorkBySlug(slug: string): Promise<Work | null> {
-  const res = await client.getList<Work>({
-    endpoint: "works",
-    queries: {
-      filters: `slug[equals]${slug}`,
-      limit: 1,
-    },
-  });
-  return res.contents[0] ?? null;
+export async function getWorkById(id: string): Promise<Work | null> {
+  try {
+    return await client.get<Work>({
+      endpoint: "works",
+      contentId: id,
+    });
+  } catch {
+    return null;
+  }
 }
 
 export async function getFeaturedWorks(
@@ -106,21 +106,13 @@ export async function getPosts(
   });
 }
 
-export async function getPostBySlug(
-  slug: string,
-  postType?: PostType
-): Promise<Post | null> {
-  let filters = `slug[equals]${slug}`;
-  if (postType) {
-    filters += `[and]postType[contains]${postType}`;
+export async function getPostById(id: string): Promise<Post | null> {
+  try {
+    return await client.get<Post>({
+      endpoint: "posts",
+      contentId: id,
+    });
+  } catch {
+    return null;
   }
-
-  const res = await client.getList<Post>({
-    endpoint: "posts",
-    queries: {
-      filters,
-      limit: 1,
-    },
-  });
-  return res.contents[0] ?? null;
 }

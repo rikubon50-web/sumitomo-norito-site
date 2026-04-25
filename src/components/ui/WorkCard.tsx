@@ -9,7 +9,7 @@ type Props = {
 export default function WorkCard({ work }: Props) {
   return (
     <Link
-      href={`/works/${work.slug}`}
+      href={`/works/${work.id}`}
       className="group block"
     >
       <div className="relative aspect-[3/2] overflow-hidden bg-primary-900">
@@ -33,11 +33,6 @@ export default function WorkCard({ work }: Props) {
         <div className="flex items-center gap-3 mb-2">
           {work.year && (
             <span className="text-xs text-primary-500">{work.year}</span>
-          )}
-          {work.category && work.category.length > 0 && (
-            <span className="text-xs text-primary-600">
-              {work.category[0]}
-            </span>
           )}
         </div>
         <h3 className="text-white text-lg font-light tracking-wide group-hover:text-primary-200 transition-colors">
