@@ -30,14 +30,8 @@ const config: Config = {
           "Arial",
           "sans-serif",
         ],
-        serif: [
-          "'Noto Serif JP'",
-          "'Times New Roman'",
-          "serif",
-        ],
         display: [
           "'Cormorant Garamond'",
-          "'Noto Serif JP'",
           "serif",
         ],
       },

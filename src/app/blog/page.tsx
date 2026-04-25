@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getBlogPosts } from "@/lib/microcms";
 import PostCard from "@/components/ui/PostCard";
 import PageHeader from "@/components/ui/PageHeader";
+import ContactCTA from "@/components/ui/ContactCTA";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -40,6 +41,10 @@ export default async function BlogPage() {
             記事は準備中です。
           </p>
         )}
+      </div>
+
+      <div className="border-t border-white/5">
+        <ContactCTA />
       </div>
     </>
   );

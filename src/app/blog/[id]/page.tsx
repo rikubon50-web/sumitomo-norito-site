@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBlogPostById, getBlogPosts } from "@/lib/microcms";
 import RichTextRenderer from "@/components/ui/RichTextRenderer";
+import ContactCTA from "@/components/ui/ContactCTA";
 import { formatDate } from "@/lib/utils";
 
 type Props = {
@@ -44,6 +45,7 @@ export default async function BlogDetailPage({ params }: Props) {
   const dateStr = post.publishedAt || post.createdAt;
 
   return (
+    <>
     <article className="pt-12 lg:pt-16 pb-section-sm lg:pb-section">
       <div className="max-w-3xl mx-auto px-6 lg:px-12">
         <header>
@@ -83,5 +85,10 @@ export default async function BlogDetailPage({ params }: Props) {
         </div>
       </div>
     </article>
+
+    <div className="border-t border-white/5">
+      <ContactCTA />
+    </div>
+    </>
   );
 }

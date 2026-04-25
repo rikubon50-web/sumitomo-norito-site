@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getNewsPosts } from "@/lib/microcms";
 import NewsList from "@/components/ui/NewsList";
 import PageHeader from "@/components/ui/PageHeader";
+import ContactCTA from "@/components/ui/ContactCTA";
 
 export const metadata: Metadata = {
   title: "News",
@@ -30,6 +31,10 @@ export default async function NewsPage() {
 
       <div className="max-w-4xl mx-auto px-6 lg:px-12 py-section-sm lg:py-section">
         <NewsList posts={posts} />
+      </div>
+
+      <div className="border-t border-white/5">
+        <ContactCTA />
       </div>
     </>
   );
