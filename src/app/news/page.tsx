@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getPosts } from "@/lib/microcms";
+import { getNewsPosts } from "@/lib/microcms";
 import NewsList from "@/components/ui/NewsList";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function NewsPage() {
-  let posts: Awaited<ReturnType<typeof getPosts>>["contents"] = [];
+  let posts: Awaited<ReturnType<typeof getNewsPosts>>["contents"] = [];
 
   try {
-    const res = await getPosts("news", { limit: 50 });
+    const res = await getNewsPosts({ limit: 50 });
     posts = res.contents;
   } catch {
     // fallback

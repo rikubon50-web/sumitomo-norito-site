@@ -4,8 +4,8 @@ import type {
   SiteSettings,
   Profile,
   Work,
-  Post,
-  PostType,
+  BlogPost,
+  NewsPost,
 } from "@/types/microcms";
 
 // ============================================================
@@ -85,31 +85,52 @@ export async function getFeaturedWorks(
 }
 
 // ============================================================
-// posts（Blog / News 統合）
+// blog
 // ============================================================
 
-export async function getPosts(
-  postType?: PostType,
+export async function getBlogPosts(
   queries?: MicroCMSQueries
-): Promise<MicroCMSListResponse<Post>> {
-  const filters = postType
-    ? `postType[contains]${postType}`
-    : undefined;
-
-  return client.getList<Post>({
-    endpoint: "posts",
+): Promise<MicroCMSListResponse<BlogPost>> {
+  return client.getList<BlogPost>({
+    endpoint: "blog",
     queries: {
       orders: "-publishedAt",
-      filters,
       ...queries,
     },
   });
 }
 
-export async function getPostById(id: string): Promise<Post | null> {
+export async function getBlogPostById(id: string): Promise<BlogPost | null> {
   try {
-    return await client.get<Post>({
-      endpoint: "posts",
+    return await client.get<BlogPost>({
+      endpoint: "blog",
+      contentId: id,
+    });
+  } catch {
+    return null;
+  }
+}
+
+// ============================================================
+// news
+// ============================================================
+
+export async function getNewsPosts(
+  queries?: MicroCMSQueries
+): Promise<MicroCMSListResponse<NewsPost>> {
+  return client.getList<NewsPost>({
+    endpoint: "news",
+    queries: {
+      orders: "-publishedAt",
+      ...queries,
+    },
+  });
+}
+
+export async function getNewsPostById(id: string): Promise<NewsPost | null> {
+  try {
+    return await client.get<NewsPost>({
+      endpoint: "news",
       contentId: id,
     });
   } catch {

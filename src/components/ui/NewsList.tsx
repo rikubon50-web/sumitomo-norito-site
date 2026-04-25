@@ -1,9 +1,9 @@
 import Link from "next/link";
-import type { Post } from "@/types/microcms";
+import type { NewsPost } from "@/types/microcms";
 import { formatDateShort } from "@/lib/utils";
 
 type Props = {
-  posts: Post[];
+  posts: NewsPost[];
   showMore?: boolean;
 };
 

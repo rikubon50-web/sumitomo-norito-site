@@ -59,19 +59,26 @@ export type Work = {
 } & MicroCMSListContent;
 
 // ============================================================
-// 4. posts（リスト型 - Blog/News 統合）
+// 4. blog（リスト型）
 // ============================================================
 
-export type PostType = "blog" | "news";
-
-export type Post = {
+export type BlogPost = {
   title: string;
   thumbnail?: MicroCMSImage;
   excerpt?: string;
-  body?: string;           // リッチテキスト
-  postType: PostType[];    // microCMSのセレクトフィールド（配列）
+  body?: string;
   publishedAt?: string;
   isFeatured?: boolean;
+} & MicroCMSListContent;
+
+// ============================================================
+// 5. news（リスト型）
+// ============================================================
+
+export type NewsPost = {
+  title: string;
+  body?: string;
+  publishedAt?: string;
   externalUrl?: string;
 } & MicroCMSListContent;
 

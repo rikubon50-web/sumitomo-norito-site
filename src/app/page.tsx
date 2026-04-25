@@ -8,9 +8,10 @@ import {
   getSiteSettings,
   getProfile,
   getFeaturedWorks,
-  getPosts,
+  getBlogPosts,
+  getNewsPosts,
 } from "@/lib/microcms";
-import type { Post } from "@/types/microcms";
+import type { BlogPost } from "@/types/microcms";
 import { formatDateShort } from "@/lib/utils";
 
 export const revalidate = 60;
@@ -21,8 +22,8 @@ export default async function HomePage() {
       getSiteSettings(),
       getProfile(),
       getFeaturedWorks(6),
-      getPosts("blog", { limit: 5 }),
-      getPosts("news", { limit: 5 }),
+      getBlogPosts({ limit: 5 }),
+      getNewsPosts({ limit: 5 }),
     ]);
 
   const siteSettings =
@@ -38,7 +39,6 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Hero */}
       <Hero
         imageUrl={profileData?.mainVisual?.url}
         catchCopy={siteSettings?.heroCatch || ""}
@@ -46,7 +46,6 @@ export default async function HomePage() {
         englishName={profileData?.englishName}
       />
 
-      {/* Featured Works */}
       {featuredWorks.length > 0 && (
         <section className="py-section-sm lg:py-section border-t border-white/5">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -68,10 +67,9 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Blog */}
       {latestBlog.length > 0 && (
         <section className="py-section-sm lg:py-section border-t border-white/5">
-          <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <div className="max-w-3xl mx-auto px-6 lg:px-12">
             <SectionTitle title="Blog" subtitle="Latest Articles" />
             <BlogList posts={latestBlog} />
             <div className="mt-8 text-center">
@@ -86,7 +84,6 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* News */}
       {latestNews.length > 0 && (
         <section className="py-section-sm lg:py-section border-t border-white/5">
           <div className="max-w-4xl mx-auto px-6 lg:px-12">
@@ -96,7 +93,6 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Contact CTA */}
       <div className="border-t border-white/5">
         <ContactCTA />
       </div>
@@ -104,8 +100,7 @@ export default async function HomePage() {
   );
 }
 
-/** News と同じリスト形式の Blog 一覧 */
-function BlogList({ posts }: { posts: Post[] }) {
+function BlogList({ posts }: { posts: BlogPost[] }) {
   if (posts.length === 0) return null;
   return (
     <ul className="divide-y divide-white/5">

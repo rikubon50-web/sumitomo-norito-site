@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPostById, getPosts } from "@/lib/microcms";
+import { getBlogPostById, getBlogPosts } from "@/lib/microcms";
 import RichTextRenderer from "@/components/ui/RichTextRenderer";
 import { formatDate } from "@/lib/utils";
 
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getPostById(params.id);
+  const post = await getBlogPostById(params.id);
   if (!post) return { title: "Not Found" };
 
   return {
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   try {
-    const res = await getPosts("blog", { limit: 100 });
+    const res = await getBlogPosts({ limit: 100 });
     return res.contents.map((post) => ({ id: post.id }));
   } catch {
     return [];
@@ -38,7 +38,7 @@ export async function generateStaticParams() {
 export const revalidate = 60;
 
 export default async function BlogDetailPage({ params }: Props) {
-  const post = await getPostById(params.id);
+  const post = await getBlogPostById(params.id);
   if (!post) notFound();
 
   const dateStr = post.publishedAt || post.createdAt;
