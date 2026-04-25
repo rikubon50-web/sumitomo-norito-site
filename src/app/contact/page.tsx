@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getSiteSettings } from "@/lib/microcms";
 import PageHeader from "@/components/ui/PageHeader";
 import { getSnsIcon } from "@/lib/utils";
+import ContactForm from "@/components/ui/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -20,27 +21,25 @@ export default async function ContactPage() {
 
   return (
     <>
-      <PageHeader
-        title="Contact"
-        subtitle="Get in Touch"
-      />
+      <PageHeader title="Contact" subtitle="Get in Touch" />
 
       <div className="max-w-3xl mx-auto px-6 lg:px-12 py-section-sm lg:py-section">
-        <div className="space-y-16">
+        <div className="space-y-20">
+          {/* Contact Form */}
+          <ContactForm />
+
           {/* Email */}
-          <div>
+          <div className="border-t border-white/5 pt-16">
             <h2 className="text-xs uppercase tracking-[0.2em] text-primary-500 mb-4">
-              Email
+              Direct Email
             </h2>
             <a
               href={`mailto:${settings?.contactEmail || "noripiton@gmail.com"}`}
-              className="text-xl lg:text-2xl text-white hover:text-primary-300 transition-colors font-light tracking-wide"
+              className="text-lg text-white hover:text-primary-300 transition-colors font-light tracking-wide"
             >
               {settings?.contactEmail || "noripiton@gmail.com"}
             </a>
-            <p className="mt-4 text-sm text-primary-500 leading-relaxed">
-              メールにてお気軽にお問い合わせください。
-              <br />
+            <p className="mt-3 text-sm text-primary-500 leading-relaxed">
               通常、3営業日以内にご返信いたします。
             </p>
           </div>
@@ -74,7 +73,7 @@ export default async function ContactPage() {
           )}
 
           {/* Note */}
-          <div className="pt-8 border-t border-white/5">
+          <div className="border-t border-white/5 pt-8">
             <p className="text-xs text-primary-600 leading-relaxed">
               ご依頼内容により、お引き受けできない場合がございます。
               <br />
