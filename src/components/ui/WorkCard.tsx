@@ -18,7 +18,7 @@ export default function WorkCard({ work }: Props) {
             src={work.thumbnail.url}
             alt={work.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-contain transition-opacity duration-500 group-hover:opacity-80"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
