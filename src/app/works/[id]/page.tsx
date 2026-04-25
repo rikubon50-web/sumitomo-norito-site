@@ -104,18 +104,15 @@ export default async function WorkDetailPage({ params }: Props) {
             <h2 className="font-display text-xl text-white mb-6">Gallery</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {work.galleryImages.map((img, i) => (
-                <div
+                <Image
                   key={i}
-                  className="relative aspect-[3/2] overflow-hidden bg-primary-900"
-                >
-                  <Image
-                    src={img.url}
-                    alt={`${work.title} ${i + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                  src={img.url}
+                  alt={`${work.title} ${i + 1}`}
+                  width={img.width ?? 800}
+                  height={img.height ?? 600}
+                  className="w-full h-auto"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               ))}
             </div>
           </div>
