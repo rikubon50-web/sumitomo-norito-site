@@ -12,25 +12,11 @@ export type SnsLink = {
 };
 
 // ============================================================
-// 1. siteSettings（単一コンテンツ）
-// ============================================================
-
-export type SiteSettings = {
-  siteTitle: string;
-  siteDescription: string;
-  ogImage?: MicroCMSImage;
-  heroCatch: string;
-  heroSubCatch?: string;
-  contactEmail: string;
-  snsLinks?: SnsLink[];
-  footerText?: string;
-} & MicroCMSDate;
-
-// ============================================================
-// 2. profile（単一コンテンツ）
+// 1. profile（単一コンテンツ）※ siteSettings を統合済み
 // ============================================================
 
 export type Profile = {
+  // プロフィール
   name: string;
   englishName?: string;
   mainVisual?: MicroCMSImage;
@@ -40,7 +26,19 @@ export type Profile = {
   career?: string;        // リッチテキスト
   achievements?: string;  // リッチテキスト
   socialLinks?: SnsLink[];
+  // サイト設定（旧 siteSettings）
+  siteTitle?: string;
+  siteDescription?: string;
+  ogImage?: MicroCMSImage;
+  heroCatch?: string;
+  heroSubCatch?: string;
+  contactEmail?: string;
+  snsLinks?: SnsLink[];
+  footerText?: string;
 } & MicroCMSDate;
+
+// 後方互換のためのエイリアス
+export type SiteSettings = Profile;
 
 // ============================================================
 // 3. works（リスト型）

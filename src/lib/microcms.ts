@@ -25,23 +25,18 @@ export const client = createClient({
 });
 
 // ============================================================
-// siteSettings
-// ============================================================
-
-export async function getSiteSettings(): Promise<SiteSettings> {
-  return client.get<SiteSettings>({
-    endpoint: "siteSettings",
-  });
-}
-
-// ============================================================
-// profile
+// profile（siteSettings を統合）
 // ============================================================
 
 export async function getProfile(): Promise<Profile> {
   return client.get<Profile>({
     endpoint: "profile",
   });
+}
+
+// 後方互換ラッパー：siteSettings 削除後も各コンポーネントをそのまま使える
+export async function getSiteSettings(): Promise<SiteSettings> {
+  return getProfile();
 }
 
 // ============================================================
