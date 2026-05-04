@@ -8,6 +8,7 @@ type Props = {
 const FOOTER_NAV = [
   { href: "/profile", label: "Profile" },
   { href: "/works", label: "Works" },
+  { href: "/schedule", label: "Schedule" },
   { href: "/blog", label: "Blog" },
   { href: "/news", label: "News" },
   { href: "/contact", label: "Contact" },

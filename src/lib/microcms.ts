@@ -6,6 +6,7 @@ import type {
   Work,
   BlogPost,
   NewsPost,
+  Schedule,
 } from "@/types/microcms";
 
 // ============================================================
@@ -144,4 +145,49 @@ export async function getNewsPostById(id: string): Promise<NewsPost | null> {
   } catch {
     return null;
   }
+}
+
+// ============================================================
+// schedule
+// ============================================================
+
+export async function getSchedule(
+  queries?: MicroCMSQueries
+): Promise<MicroCMSListResponse<Schedule>> {
+  return client.getList<Schedule>({
+    endpoint: "schedule",
+    queries: {
+      orders: "-date",
+      limit: 100,
+      ...queries,
+    },
+  });
+}
+
+export async function getUpcomingSchedule(
+  limit = 20
+): Promise<MicroCMSListResponse<Schedule>> {
+  const today = new Date().toISOString().slice(0, 10).replace(/-/g, ".");
+  return client.getList<Schedule>({
+    endpoint: "schedule",
+    queries: {
+      filters: `date[greater_than]${today}`,
+      orders: "date",
+      limit,
+    },
+  });
+}
+
+export async function getPastSchedule(
+  limit = 50
+): Promise<MicroCMSListResponse<Schedule>> {
+  const today = new Date().toISOString().slice(0, 10).replace(/-/g, ".");
+  return client.getList<Schedule>({
+    endpoint: "schedule",
+    queries: {
+      filters: `date[less_than_equal]${today}`,
+      orders: "-date",
+      limit,
+    },
+  });
 }

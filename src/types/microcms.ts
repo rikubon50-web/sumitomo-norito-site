@@ -69,7 +69,20 @@ export type BlogPost = {
 } & MicroCMSListContent;
 
 // ============================================================
-// 5. news（リスト型）
+// 5. schedule（リスト型）
+// ============================================================
+
+export type Schedule = {
+  title: string;
+  date: string;      // "YYYY.MM.DD" 形式
+  venue?: string;
+  time?: string;
+  detail?: string;
+  ticketUrl?: string;
+} & MicroCMSListContent;
+
+// ============================================================
+// 6. news（リスト型）
 // ============================================================
 
 export type NewsPost = {
