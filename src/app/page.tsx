@@ -10,20 +10,23 @@ import {
   getFeaturedWorks,
   getFeaturedBlogPosts,
   getNewsPosts,
+  getSchedule,
 } from "@/lib/microcms";
-import type { BlogPost } from "@/types/microcms";
+import type { BlogPost, Schedule } from "@/types/microcms";
+import UpcomingBanner from "@/components/ui/UpcomingBanner";
 import { formatDateShort } from "@/lib/utils";
 
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [settings, profile, worksRes, blogRes, newsRes] =
+  const [settings, profile, worksRes, blogRes, newsRes, scheduleRes] =
     await Promise.allSettled([
       getSiteSettings(),
       getProfile(),
       getFeaturedWorks(6),
       getFeaturedBlogPosts(5),
       getNewsPosts({ limit: 5 }),
+      getSchedule({ limit: 100 }),
     ]);
 
   const siteSettings =
@@ -36,6 +39,12 @@ export default async function HomePage() {
     blogRes.status === "fulfilled" ? blogRes.value.contents : [];
   const latestNews =
     newsRes.status === "fulfilled" ? newsRes.value.contents : [];
+  const allSchedule =
+    scheduleRes.status === "fulfilled" ? scheduleRes.value.contents : [];
+  const today = new Date().toISOString().slice(0, 10).replace(/-/g, ".");
+  const upcomingSchedule: Schedule[] = allSchedule
+    .filter((s) => s.date > today)
+    .sort((a, b) => a.date.localeCompare(b.date));
 
   return (
     <>
@@ -45,6 +54,8 @@ export default async function HomePage() {
         name={profileData?.name}
         englishName={profileData?.englishName}
       />
+
+      <UpcomingBanner items={upcomingSchedule} />
 
       {featuredWorks.length > 0 && (
         <section className="py-section-sm lg:py-section border-t border-white/5">
