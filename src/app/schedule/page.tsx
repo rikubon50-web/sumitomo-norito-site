@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { getUpcomingSchedule, getPastSchedule } from "@/lib/microcms";
+import { getSchedule } from "@/lib/microcms";
 import PageHeader from "@/components/ui/PageHeader";
 import ContactCTA from "@/components/ui/ContactCTA";
 import { formatDateShort } from "@/lib/utils";
@@ -50,13 +49,18 @@ function ScheduleRow({ item }: { item: Schedule }) {
 }
 
 export default async function SchedulePage() {
-  const [upcomingRes, pastRes] = await Promise.allSettled([
-    getUpcomingSchedule(20),
-    getPastSchedule(50),
-  ]);
+  let all: Schedule[] = [];
+  try {
+    const res = await getSchedule({ limit: 100 });
+    all = res.contents;
+  } catch {
+    // fallback
+  }
 
-  const upcoming = upcomingRes.status === "fulfilled" ? upcomingRes.value.contents : [];
-  const past = pastRes.status === "fulfilled" ? pastRes.value.contents : [];
+  // "YYYY.MM.DD" 形式は辞書順 = 日付順なので文字列比較で振り分け可能
+  const today = new Date().toISOString().slice(0, 10).replace(/-/g, ".");
+  const upcoming = all.filter((s) => s.date > today).sort((a, b) => a.date.localeCompare(b.date));
+  const past = all.filter((s) => s.date <= today).sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <>

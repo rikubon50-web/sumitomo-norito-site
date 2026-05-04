@@ -164,30 +164,3 @@ export async function getSchedule(
   });
 }
 
-export async function getUpcomingSchedule(
-  limit = 20
-): Promise<MicroCMSListResponse<Schedule>> {
-  const today = new Date().toISOString().slice(0, 10).replace(/-/g, ".");
-  return client.getList<Schedule>({
-    endpoint: "schedule",
-    queries: {
-      filters: `date[greater_than]${today}`,
-      orders: "date",
-      limit,
-    },
-  });
-}
-
-export async function getPastSchedule(
-  limit = 50
-): Promise<MicroCMSListResponse<Schedule>> {
-  const today = new Date().toISOString().slice(0, 10).replace(/-/g, ".");
-  return client.getList<Schedule>({
-    endpoint: "schedule",
-    queries: {
-      filters: `date[less_than_equal]${today}`,
-      orders: "-date",
-      limit,
-    },
-  });
-}
