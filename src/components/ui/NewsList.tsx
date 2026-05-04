@@ -20,7 +20,7 @@ export default function NewsList({ posts, showMore = false }: Props) {
     <div>
       <ul className="divide-y divide-white/5">
         {posts.map((post) => {
-          const dateStr = post.publishedAt || post.createdAt;
+          const dateStr = post.date || post.publishedAt || post.createdAt;
           return (
             <li key={post.id}>
               <Link

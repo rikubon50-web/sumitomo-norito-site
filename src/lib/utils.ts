@@ -14,7 +14,10 @@ export function formatDate(dateString: string): string {
  * 日付文字列を短縮フォーマットする
  */
 export function formatDateShort(dateString: string): string {
-  const date = new Date(dateString);
+  // "2025.12.20" 形式を ISO に正規化
+  const normalized = dateString.replace(/\./g, "-");
+  const date = new Date(normalized);
+  if (isNaN(date.getTime())) return dateString;
   return date.toLocaleDateString("ja-JP", {
     year: "numeric",
     month: "2-digit",

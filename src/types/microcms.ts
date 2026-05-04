@@ -76,6 +76,7 @@ export type BlogPost = {
 
 export type NewsPost = {
   title: string;
+  date?: string;
   body?: string;
   externalUrl?: string;
 } & MicroCMSListContent;
