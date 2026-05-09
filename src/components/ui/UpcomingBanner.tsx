@@ -14,11 +14,11 @@ export default function UpcomingBanner({ items }: Props) {
       {/* 左のアクセントライン */}
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary-950" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto pl-3 pr-3 sm:px-6 lg:px-12">
         <div className="flex items-stretch">
 
           {/* ラベル */}
-          <div className="shrink-0 flex flex-col justify-center pr-8 py-6 border-r border-primary-200">
+          <div className="shrink-0 flex flex-col justify-center pr-3 sm:pr-8 py-4 sm:py-6 border-r border-primary-200">
             <span className="text-[9px] uppercase tracking-[0.35em] text-primary-500 mb-1">
               Next Live
             </span>
@@ -28,13 +28,13 @@ export default function UpcomingBanner({ items }: Props) {
           </div>
 
           {/* イベント一覧 */}
-          <ul className="flex items-center gap-10 px-8 py-6 overflow-x-auto scrollbar-none flex-1">
+          <ul className="flex items-center gap-6 sm:gap-10 px-3 sm:px-8 py-4 sm:py-6 overflow-x-auto scrollbar-none flex-1 min-w-0">
             {items.map((item, i) => (
-              <li key={item.id} className="shrink-0 flex items-center gap-5">
+              <li key={item.id} className="shrink-0 flex items-center gap-3 sm:gap-5">
                 {i > 0 && (
                   <span className="text-primary-300 text-lg font-thin select-none">／</span>
                 )}
-                <div className="flex items-baseline gap-3">
+                <div className="flex items-baseline gap-2 sm:gap-3">
                   <time className="text-xs font-semibold tracking-wider text-primary-950 whitespace-nowrap">
                     {formatDateShort(item.date)}
                   </time>
@@ -61,8 +61,8 @@ export default function UpcomingBanner({ items }: Props) {
             ))}
           </ul>
 
-          {/* Schedule リンク */}
-          <div className="shrink-0 flex items-center pl-8 py-6 border-l border-primary-200">
+          {/* Schedule リンク（モバイルではヘッダーから遷移できるため非表示） */}
+          <div className="hidden sm:flex shrink-0 items-center pl-8 py-6 border-l border-primary-200">
             <Link
               href="/schedule"
               className="text-[10px] uppercase tracking-[0.25em] text-primary-500 hover:text-primary-950 transition-colors whitespace-nowrap font-medium"
