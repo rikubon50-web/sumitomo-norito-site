@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { getBlogPostById, getBlogPosts } from "@/lib/microcms";
 import RichTextRenderer from "@/components/ui/RichTextRenderer";
 import ContactCTA from "@/components/ui/ContactCTA";
+import JsonLd from "@/components/seo/JsonLd";
+import { blogPostingSchema, breadcrumbSchema } from "@/lib/schema";
 import { formatDate } from "@/lib/utils";
 
 type Props = {
@@ -18,11 +20,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt || `${post.title} - 住友紀人`,
+    alternates: { canonical: `/blog/${params.id}` },
     openGraph: {
       title: post.title,
       description: post.excerpt || `${post.title} - 住友紀人`,
+      url: `/blog/${params.id}`,
       images: post.thumbnail ? [{ url: post.thumbnail.url }] : [],
       type: "article",
+      publishedTime: post.publishedAt || post.createdAt,
     },
   };
 }
@@ -46,6 +51,16 @@ export default async function BlogDetailPage({ params }: Props) {
 
   return (
     <>
+    <JsonLd
+      data={[
+        blogPostingSchema(post),
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.id}` },
+        ]),
+      ]}
+    />
     <article className="pt-12 lg:pt-16 pb-section-sm lg:pb-section">
       <div className="max-w-3xl mx-auto px-6 lg:px-12">
         <header>
