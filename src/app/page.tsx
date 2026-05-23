@@ -15,6 +15,13 @@ import {
 import type { BlogPost, Schedule } from "@/types/microcms";
 import UpcomingBanner from "@/components/ui/UpcomingBanner";
 import { formatDateShort } from "@/lib/utils";
+import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { websiteSchema, personSchema } from "@/lib/schema";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export const revalidate = 60;
 
@@ -48,6 +55,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <JsonLd data={[websiteSchema(), personSchema(profileData ?? siteSettings)]} />
       <Hero
         imageUrl={profileData?.mainVisual?.url}
         catchCopy={siteSettings?.heroCatch || ""}

@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getNewsPostById, getNewsPosts } from "@/lib/microcms";
 import RichTextRenderer from "@/components/ui/RichTextRenderer";
 import ContactCTA from "@/components/ui/ContactCTA";
+import JsonLd from "@/components/seo/JsonLd";
+import { newsArticleSchema, breadcrumbSchema } from "@/lib/schema";
 import { formatDate } from "@/lib/utils";
 
 type Props = {
@@ -17,6 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: `${post.title} - お知らせ`,
+    alternates: { canonical: `/news/${params.id}` },
+    openGraph: {
+      title: post.title,
+      description: `${post.title} - お知らせ`,
+      url: `/news/${params.id}`,
+      type: "article",
+      publishedTime: post.publishedAt || post.createdAt,
+    },
   };
 }
 
@@ -39,6 +49,16 @@ export default async function NewsDetailPage({ params }: Props) {
 
   return (
     <>
+    <JsonLd
+      data={[
+        newsArticleSchema(post),
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "News", path: "/news" },
+          { name: post.title, path: `/news/${post.id}` },
+        ]),
+      ]}
+    />
     <article className="pt-12 lg:pt-16 pb-section-sm lg:pb-section">
       <div className="max-w-3xl mx-auto px-6 lg:px-12">
         <header>

@@ -7,6 +7,7 @@ import ContactCTA from "@/components/ui/ContactCTA";
 export const metadata: Metadata = {
   title: "Blog",
   description: "住友紀人のブログ記事一覧",
+  alternates: { canonical: "/blog" },
 };
 
 export const revalidate = 60;

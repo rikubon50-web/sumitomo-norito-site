@@ -8,6 +8,7 @@ import ContactCTA from "@/components/ui/ContactCTA";
 export const metadata: Metadata = {
   title: "Profile",
   description: "住友紀人のプロフィール・経歴・実績",
+  alternates: { canonical: "/profile" },
 };
 
 export const revalidate = 60;

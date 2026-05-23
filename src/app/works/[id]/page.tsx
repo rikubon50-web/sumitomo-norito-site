@@ -6,6 +6,8 @@ import { getWorkById, getWorks } from "@/lib/microcms";
 import { toYouTubeEmbedUrl } from "@/lib/utils";
 import RichTextRenderer from "@/components/ui/RichTextRenderer";
 import ContactCTA from "@/components/ui/ContactCTA";
+import JsonLd from "@/components/seo/JsonLd";
+import { creativeWorkSchema, breadcrumbSchema } from "@/lib/schema";
 
 type Props = {
   params: { id: string };
@@ -18,9 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: work.title,
     description: work.excerpt || `${work.title} - 住友紀人`,
+    alternates: { canonical: `/works/${params.id}` },
     openGraph: {
       title: work.title,
       description: work.excerpt || `${work.title} - 住友紀人`,
+      url: `/works/${params.id}`,
       images: work.thumbnail ? [{ url: work.thumbnail.url }] : [],
     },
   };
@@ -43,6 +47,16 @@ export default async function WorkDetailPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={[
+          creativeWorkSchema(work),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Works", path: "/works" },
+            { name: work.title, path: `/works/${work.id}` },
+          ]),
+        ]}
+      />
       {work.thumbnail && (
         <div className="relative w-full h-[50vh] lg:h-[60vh] mt-16 lg:mt-20 overflow-hidden">
           {/* ぼかし背景 */}

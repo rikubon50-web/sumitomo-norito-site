@@ -25,12 +25,14 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          "var(--font-sans)",
           "'Noto Sans JP'",
           "'Helvetica Neue'",
           "Arial",
           "sans-serif",
         ],
         display: [
+          "var(--font-display)",
           "'Cormorant Garamond'",
           "serif",
         ],

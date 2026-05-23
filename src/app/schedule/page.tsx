@@ -8,6 +8,7 @@ import type { Schedule } from "@/types/microcms";
 export const metadata: Metadata = {
   title: "Schedule",
   description: "住友紀人のライブ・コンサートスケジュール",
+  alternates: { canonical: "/schedule" },
 };
 
 export const revalidate = 60;

@@ -7,6 +7,7 @@ import ContactForm from "@/components/ui/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description: "住友紀人へのお問い合わせ",
+  alternates: { canonical: "/contact" },
 };
 
 export const revalidate = 60;
