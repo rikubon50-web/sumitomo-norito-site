@@ -44,15 +44,20 @@ export default async function ProfilePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Photo */}
           {profile.profileImage && (
-            <Image
-              src={profile.profileImage.url}
-              alt={profile.name}
-              width={profile.profileImage.width ?? 800}
-              height={profile.profileImage.height ?? 1000}
-              className="w-full h-auto"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-            />
+            <figure className="m-0">
+              <Image
+                src={profile.profileImage.url}
+                alt={profile.name}
+                width={profile.profileImage.width ?? 800}
+                height={profile.profileImage.height ?? 1000}
+                className="w-full h-auto"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+              <figcaption className="mt-2 text-[10px] tracking-wider text-white/40 text-right">
+                © 松尾エリカ香龍
+              </figcaption>
+            </figure>
           )}
 
           {/* Bio */}

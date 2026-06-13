@@ -5,6 +5,7 @@ type Props = {
   catchCopy: string;
   name?: string;
   englishName?: string;
+  photoCredit?: string;
 };
 
 export default function Hero({
@@ -12,6 +13,7 @@ export default function Hero({
   catchCopy,
   name,
   englishName,
+  photoCredit,
 }: Props) {
   return (
     <section
@@ -74,6 +76,16 @@ export default function Hero({
           <div className="w-px h-8 bg-primary-600 animate-pulse" />
         </div>
       </div>
+
+      {/* フォトクレジット */}
+      {photoCredit && (
+        <p
+          className="absolute bottom-3 right-4 z-10 text-[10px] tracking-wider text-white/40 animate-fade-in"
+          style={{ animationDelay: "1.2s" }}
+        >
+          © {photoCredit}
+        </p>
+      )}
     </section>
   );
 }

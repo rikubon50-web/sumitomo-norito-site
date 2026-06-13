@@ -61,6 +61,7 @@ export default async function HomePage() {
         catchCopy={siteSettings?.heroCatch || ""}
         name={profileData?.name}
         englishName={profileData?.englishName}
+        photoCredit="松尾エリカ香龍"
       />
 
       <UpcomingBanner items={upcomingSchedule} />
