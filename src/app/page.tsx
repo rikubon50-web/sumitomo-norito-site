@@ -48,10 +48,14 @@ export default async function HomePage() {
     newsRes.status === "fulfilled" ? newsRes.value.contents : [];
   const allSchedule =
     scheduleRes.status === "fulfilled" ? scheduleRes.value.contents : [];
-  const today = new Date().toISOString().slice(0, 10).replace(/-/g, ".");
+  const todayMidnight = new Date();
+  todayMidnight.setHours(0, 0, 0, 0);
+  const parseScheduleDate = (s: string) => new Date(s.replace(/[./]/g, "-"));
   const upcomingSchedule: Schedule[] = allSchedule
-    .filter((s) => s.date > today)
-    .sort((a, b) => a.date.localeCompare(b.date));
+    .map((s) => ({ s, t: parseScheduleDate(s.date).getTime() }))
+    .filter(({ t }) => !isNaN(t) && t >= todayMidnight.getTime())
+    .sort((a, b) => a.t - b.t)
+    .map(({ s }) => s);
 
   return (
     <>
