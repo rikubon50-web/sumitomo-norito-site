@@ -14,7 +14,7 @@ import {
 } from "@/lib/microcms";
 import type { BlogPost, Schedule } from "@/types/microcms";
 import UpcomingBanner from "@/components/ui/UpcomingBanner";
-import { formatDateShort } from "@/lib/utils";
+import { formatDateShort, parseScheduleTime } from "@/lib/utils";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { websiteSchema, personSchema } from "@/lib/schema";
@@ -50,9 +50,8 @@ export default async function HomePage() {
     scheduleRes.status === "fulfilled" ? scheduleRes.value.contents : [];
   const todayMidnight = new Date();
   todayMidnight.setHours(0, 0, 0, 0);
-  const parseScheduleDate = (s: string) => new Date(s.replace(/[./]/g, "-"));
   const upcomingSchedule: Schedule[] = allSchedule
-    .map((s) => ({ s, t: parseScheduleDate(s.date).getTime() }))
+    .map((s) => ({ s, t: parseScheduleTime(s.date) }))
     .filter(({ t }) => !isNaN(t) && t >= todayMidnight.getTime())
     .sort((a, b) => a.t - b.t)
     .map(({ s }) => s);

@@ -28,6 +28,17 @@ export function formatDateShort(dateString: string): string {
 }
 
 /**
+ * スケジュールの日付文字列("YYYY.MM.DD" / "YYYY/MM/DD" / ISO)をタイムスタンプに変換する。
+ * パース不能な場合は NaN を返す
+ */
+export function parseScheduleTime(dateString: string): number {
+  const normalized = /^\d{4}[./]\d{1,2}[./]\d{1,2}$/.test(dateString)
+    ? dateString.replace(/[./]/g, "-")
+    : dateString;
+  return new Date(normalized).getTime();
+}
+
+/**
  * YouTube URLを埋め込み用URLに変換する
  */
 export function toYouTubeEmbedUrl(url: string): string {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getSchedule } from "@/lib/microcms";
 import PageHeader from "@/components/ui/PageHeader";
 import ContactCTA from "@/components/ui/ContactCTA";
-import { formatDateShort } from "@/lib/utils";
+import { formatDateShort, parseScheduleTime } from "@/lib/utils";
 import type { Schedule } from "@/types/microcms";
 
 export const metadata: Metadata = {
@@ -58,10 +58,19 @@ export default async function SchedulePage() {
     // fallback
   }
 
-  // "YYYY.MM.DD" 形式は辞書順 = 日付順なので文字列比較で振り分け可能
-  const today = new Date().toISOString().slice(0, 10).replace(/-/g, ".");
-  const upcoming = all.filter((s) => s.date > today).sort((a, b) => a.date.localeCompare(b.date));
-  const past = all.filter((s) => s.date <= today).sort((a, b) => b.date.localeCompare(a.date));
+  const todayMidnight = new Date();
+  todayMidnight.setHours(0, 0, 0, 0);
+  const dated = all
+    .map((s) => ({ s, t: parseScheduleTime(s.date) }))
+    .filter(({ t }) => !isNaN(t));
+  const upcoming = dated
+    .filter(({ t }) => t >= todayMidnight.getTime())
+    .sort((a, b) => a.t - b.t)
+    .map(({ s }) => s);
+  const past = dated
+    .filter(({ t }) => t < todayMidnight.getTime())
+    .sort((a, b) => b.t - a.t)
+    .map(({ s }) => s);
 
   return (
     <>
